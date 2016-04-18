@@ -6,10 +6,6 @@ using Microsoft.AspNet.Mvc;
 using WebApplication1.Models;
 using Microsoft.Data.Entity;
 
-
-
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace WebApplication1.Controllers
 {
     public class ItemsController : Controller
@@ -48,6 +44,19 @@ namespace WebApplication1.Controllers
             db.Entry(item).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public IActionResult Delete(int id)
+        {
+            var thisItem = db.Items.FirstOrDefault(x => x.ItemId == id);
+            return View(thisItem);
+        }
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var thisItem = db.Items.FirstOrDefault(x => x.ItemId == id);
+            db.Items.Remove(thisItem);
+            db.SaveChanges();
+            return RedirectToAction("index");
         }
     }
 }
