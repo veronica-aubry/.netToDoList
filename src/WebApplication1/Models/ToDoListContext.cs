@@ -8,9 +8,9 @@ namespace WebApplication1.Models
 {
     public class ToDoListContext : DbContext
     {
-        public virtual DbSet<Item> Items { get; set; }
-        public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<itemcategories> itemcategories { get; set; }
+        public DbSet<Item> Items { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<itemcategories> itemcategories { get; set; }
 
 
         protected override void OnConfiguring (DbContextOptionsBuilder options)
