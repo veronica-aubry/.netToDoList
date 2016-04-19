@@ -14,18 +14,17 @@ namespace WebApplication1.Controllers
         private ToDoListContext db = new ToDoListContext();
         public IActionResult Index()
         {
-            return View(db.Items.Include(x => x.Category).ToList());
+            var itemList = db.itemcategories.Include(x => x.Item).Include(x => x.Category).ToList();
+            var categoryList = db.Categories.Include(x => x.itemcategories).ToList();
+            ViewBag.categories = categoryList;
+            return View(itemList);
         }
         public IActionResult Details(int id)
         {
             var thisItem = db.Items.FirstOrDefault(x => x.ItemId == id);
             return View(thisItem);
         }
-        public ActionResult Create()
-        {
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name");
-            return View();
-        }
+
         [HttpPost]
         public ActionResult Create(Item item)
         {
@@ -58,6 +57,11 @@ namespace WebApplication1.Controllers
             db.Items.Remove(thisItem);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public void addCategory()
+        {
+            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name");
         }
     }
 }

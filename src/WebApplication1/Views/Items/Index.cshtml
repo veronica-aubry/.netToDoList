@@ -2,7 +2,7 @@
     ViewData["Title"] = "item";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model IEnumerable<WebApplication1.Models.Item>
+@model IEnumerable<WebApplication1.Models.itemcategories>
 
 
 <h2>To Do List</h2>
@@ -10,20 +10,26 @@
 <table class="table">
     <tr>
         <th>
-            <h4>@Html.DisplayNameFor(model => model.Description)</h4>
+            <h4>Task</h4>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Category.Name)
+           Categories
         </th>
     </tr>
     @foreach (var listItem in Model)
     {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => listItem.Description)
+            @Html.DisplayFor(modelItem => listItem.Item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => listItem.Category.Name)
+
+
+      @foreach (var category in listItem.Item.itemcategories)
+      {
+
+            @Html.DisplayFor(modelitem => category.Category.Name)
+        }
         </td>
         <td>
                 @Html.ActionLink("Details", "Details", new { id = listItem.ItemId }) | 

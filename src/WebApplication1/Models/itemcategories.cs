@@ -7,14 +7,19 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Models
 {
-    [Table("Items")]
-    public class Item
-    {
-        [Key]
-        public int ItemId { get; set; }
-        public string Description { get; set; }
-        public ICollection<itemcategories> itemcategories { set; get; }
+    [Table("itemcategories")]
 
+    public class itemcategories
+    {
+
+        [Key]
+        public int id { get; set; }
+     
+        public int ItemId { get; set; }
+        public Item Item { get; set; }
+
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
 
     }
 }

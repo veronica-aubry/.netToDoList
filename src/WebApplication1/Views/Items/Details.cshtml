@@ -12,7 +12,13 @@
     <h2>Details</h2>
     <hr />
     @Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)
-    <p>@Html.DisplayNameFor(model => model.CategoryId) : @Html.DisplayFor(model => model.CategoryId)</p>
+
+   @foreach (var category in Model.itemcategories)
+   {
+
+    <p>@Html.DisplayNameFor(x => category.CategoryId) : @Html.DisplayFor(x => category.CategoryId)</p>
+
+   }
 
     <p>@Html.ActionLink("Back to list", "Index")
        @Html.ActionLink("Edit", "Edit", new { id = Model.ItemId })   
