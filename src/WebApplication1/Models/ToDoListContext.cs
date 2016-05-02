@@ -8,12 +8,12 @@ namespace WebApplication1.Models
 {
     public class ToDoListContext : DbContext
     {
-        public DbSet<Item> Items { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<itemcategories> itemcategories { get; set; }
+        public virtual DbSet<Item> Items { get; set; }
+        //public DbSet<Category> Categories { get; set; }
+        //public DbSet<itemcategories> itemcategories { get; set; }
 
 
-        protected override void OnConfiguring (DbContextOptionsBuilder options)
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=ToDoList;integrated security = true");
         }
